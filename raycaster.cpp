@@ -9,7 +9,7 @@ using namespace Eigen;
 
 //window property
 const int width = 1024;
-const int height = 520;
+const int height = 640;
 
 float fov = M_PI/2;
 float zfov = M_PI/8;
@@ -125,13 +125,14 @@ void fpsDraw(sf::RenderWindow& window) {
 		int da = abs(i-nrays/2)/nrays/2*fov/2;
 		float dist = drays[i]*cos(da);
 		//get top and bottom coordinates on the second screen
-		int bottom = height/2 - (height/2)*zeye/(dist*tan(zfov/2));
-		int top = height/2 + (height/2)*zwall/(dist*tan(zfov/2));
+		int bottom = height/2 + (height/2)*zeye/(dist*tan(zfov/2));
+		int top = height/2 - (height/2)*zwall/(dist*tan(zfov/2));
 		//draw rectangle
-		sf::RectangleShape rect(sf::Vector2f(width/nrays, top-bottom));
-		rect.setPosition(sf::Vector2f(i*width/nrays, height/2-top));
+		sf::RectangleShape rect(sf::Vector2f(width/nrays, bottom-top));
+		rect.setPosition(sf::Vector2f(i*width/nrays, top));
 		//color depends on distance
-		rect.setFillColor(sf::Color(255,255,255));
+		int col = 255-255*drays[i]/width;
+		rect.setFillColor(sf::Color(col,col,col));
 		window.draw(rect);
 	}
 }
@@ -161,7 +162,7 @@ int main() {
         {
 		// check all the window's events that were triggered since the last iteration of the loop
                 sf::Event event;
-                while (window1.pollEvent(event))
+                while (window1.pollEvent(event) || window2.pollEvent(event))
                 {
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {rotate(-0.1); triangle.rotate(-0.1*360/(2*M_PI));}
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {rotate(0.1); triangle.rotate(0.1*360/(2*M_PI));}
