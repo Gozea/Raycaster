@@ -10,11 +10,11 @@ Rays are casted with a field of view of $\pi$/2 starting from the green triangle
 
 Their length are computed by intersecting rays with each walls by solving the equation 
 
-[Alt text](gifs/intersect_equation.png)
+![Alt text](gifs/intersect_equation.png)
 
 Which has as a solution 
 
-[Alt text](gifs/intersect_solution.png)
+![Alt text](gifs/intersect_solution.png)
 
 We have an intersection if t > 0 and u $\in$ [0,1] since we consider the ray as half-open line segment and the wall as a segment delimited by its two ends.
 
@@ -22,15 +22,15 @@ We have an intersection if t > 0 and u $\in$ [0,1] since we consider the ray as 
 
 To draw the wall, we have the following equalities 
 
-[Alt text](gifs/eq1.png)
+![Alt text](gifs/eq1.png)
 
 with 
 
-[Alt text](gifs/zmax.png)
+![Alt text](gifs/zmax.png)
 
 We can now draw the bottom of the wall at
 
-[Alt text](gifs/bottom.png)
+![Alt text](gifs/bottom.png)
 
 We only have to shift this value by adding it height/2
 
